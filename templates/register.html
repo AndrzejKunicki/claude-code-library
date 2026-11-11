@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "_macros.html" import input_field %}
+
+{% block title %}Rejestracja · Biblioteka{% endblock %}
+
+{% block content %}
+<section class="edit-panel">
+  <p class="eyebrow">Nowe konto</p>
+  <h1>Rejestracja</h1>
+
+  {% if errors %}
+  <p class="alert" role="alert">Popraw zaznaczone pola i spróbuj ponownie.</p>
+  {% endif %}
+
+  <form class="form" method="post" action="/rejestracja">
+    {{ input_field("email", "Adres e-mail", "email", email, errors, "email") }}
+    {{ input_field("password", "Hasło", "password", "", errors, "new-password", "Co najmniej 8 znaków.") }}
+
+    <div class="form__actions field--wide">
+      <button class="button" type="submit">Załóż konto</button>
+      <a class="button button--ghost" href="/logowanie">Mam już konto</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

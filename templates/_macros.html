@@ -1,0 +1,69 @@
+{% macro cover(book, large=false) %}
+<div class="cover{% if large %} cover--large{% endif %}" style="--hue: {{ book.title | hue }}" aria-hidden="true">
+  <span class="cover__author">{{ book.author }}</span>
+  <span class="cover__title">{{ book.title }}</span>
+</div>
+{% endmacro %}
+
+{% macro input_field(name, label, type, value, errors, autocomplete, hint="") %}
+<div class="field field--wide{% if errors.get(name) %} field--invalid{% endif %}">
+  <label for="{{ name }}">{{ label }}</label>
+  <input id="{{ name }}" name="{{ name }}" type="{{ type }}" value="{{ value }}" autocomplete="{{ autocomplete }}" required>
+  {% if hint %}<p class="field__hint">{{ hint }}</p>{% endif %}
+  {% if errors.get(name) %}<p class="field__error" id="{{ name }}-error">{{ errors[name] }}</p>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro field_error(name, errors) %}
+{% if errors.get(name) %}<p class="field__error" id="{{ name }}-error">{{ errors[name] }}</p>{% endif %}
+{% endmacro %}
+
+{% macro book_fields(book, errors) %}
+<div class="field field--wide{% if errors.get('title') %} field--invalid{% endif %}">
+  <label for="title">Tytuł</label>
+  <input id="title" name="title" value="{{ book.title }}" maxlength="200" required>
+  {{ field_error("title", errors) }}
+</div>
+
+<div class="field field--wide{% if errors.get('author') %} field--invalid{% endif %}">
+  <label for="author">Autor</label>
+  <input id="author" name="author" value="{{ book.author }}" maxlength="200" required>
+  {{ field_error("author", errors) }}
+</div>
+
+<div class="field{% if errors.get('genre') %} field--invalid{% endif %}">
+  <label for="genre">Gatunek</label>
+  <input id="genre" name="genre" value="{{ book.genre }}" maxlength="100" required>
+  {{ field_error("genre", errors) }}
+</div>
+
+<div class="field{% if errors.get('year') %} field--invalid{% endif %}">
+  <label for="year">Rok wydania</label>
+  <input id="year" name="year" type="number" min="1" max="2100" value="{{ book.year }}" required>
+  {{ field_error("year", errors) }}
+</div>
+
+<fieldset class="field field--wide{% if errors.get('rating') %} field--invalid{% endif %}">
+  <legend>Ocena</legend>
+  <div class="rating-input">
+    {% for value in range(1, 6) %}
+    <label>
+      <input type="radio" name="rating" value="{{ value }}" {% if book.rating | string == value | string %}checked{% endif %} required>
+      <span>{{ value }}</span>
+    </label>
+    {% endfor %}
+  </div>
+  {{ field_error("rating", errors) }}
+</fieldset>
+
+<div class="field field--wide{% if errors.get('description') %} field--invalid{% endif %}">
+  <label for="description">Opis</label>
+  <textarea id="description" name="description" rows="9" required>{{ book.description }}</textarea>
+  <p class="field__hint">Akapity oddziel pustą linią.</p>
+  {{ field_error("description", errors) }}
+</div>
+{% endmacro %}
+
+{% macro stars(rating) %}
+<span class="stars" role="img" aria-label="Ocena: {{ rating }} na 5">{{ "★" * rating }}<span class="stars__empty">{{ "★" * (5 - rating) }}</span></span>
+{% endmacro %}

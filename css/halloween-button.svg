@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2a52"/>
+      <stop offset="1" stop-color="#2f6288"/>
+    </linearGradient>
+    <mask id="crescent">
+      <rect width="280" height="64" fill="#fff"/>
+      <circle cx="243" cy="11" r="9.5" fill="#000"/>
+    </mask>
+    <g id="pumpkin">
+      <path d="M-1.5-11c0-3 1-4.500 3.500-5.500l1.500 2c-1.500 1-2 2-2 3.500z" fill="#5f7a35"/>
+      <ellipse cx="-9" cy="0" rx="7" ry="10.500" fill="#d9661b"/>
+      <ellipse cx="9" cy="0" rx="7" ry="10.500" fill="#d9661b"/>
+      <ellipse cx="-4.500" cy="0" rx="7" ry="11.500" fill="#ee8426"/>
+      <ellipse cx="4.500" cy="0" rx="7" ry="11.500" fill="#ee8426"/>
+      <ellipse cx="0" cy="0" rx="6" ry="12" fill="#f5952f"/>
+      <path d="M-8-2l3-4 3 4zM2-2l3-4 3 4zM-8 3h16c-1 4-4 6-8 6s-7-2-8-6z" fill="#3b1a12"/>
+      <path d="M-4 3h3v2h-3zM1 3h3v2h-3z" fill="#f5952f"/>
+    </g>
+  </defs>
+
+  <rect width="280" height="64" fill="url(#sky)"/>
+
+  <g fill="#fbe7a1">
+    <circle cx="82" cy="10" r="1"/>
+    <circle cx="118" cy="7" r="1.200"/>
+    <circle cx="151" cy="11" r="0.900"/>
+    <circle cx="190" cy="6" r="1.200"/>
+    <circle cx="214" cy="20" r="1"/>
+    <circle cx="16" cy="9" r="1"/>
+    <circle cx="44" cy="20" r="0.900"/>
+    <path d="M222 5l1 2.500 2.500 1-2.500 1-1 2.500-1-2.500-2.500-1 2.500-1zM66 3l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>
+  </g>
+
+  <circle cx="238" cy="14" r="10.500" fill="#f6d77a" mask="url(#crescent)"/>
+
+  <path d="M30 11c2-3 5-3.500 7-2 1-1.500 1.500-2 2-2.500.5.500 1 1 2 2.500 2-1.500 5-1 7 2-2-.5-3.500 0-5 1.500-1-.8-2-1-2-1l-2 2-2-2s-1 .2-2 1c-1.500-1.500-3-2-5-1.500z" fill="#20142c"/>
+
+  <path d="M0 64v-5c40-5 90-4 140-2s100 2 140 0v7z" fill="#1c3e5c"/>
+
+  <g fill="#e67a26">
+    <path d="M100 58c3-3 6-3 9-1-2 3-6 4-9 1z"/>
+    <path d="M178 59c3-2.500 6-2 8 0-3 2.500-6 2.500-8 0z" fill="#c9482a"/>
+  </g>
+
+  <g transform="translate(62 41)">
+    <path d="M-8 11v-12a8 8.500 0 0 1 16 0v12l-2.700-2.500-2.600 2.500-2.700-2.500-2.700 2.500-2.600-2.500z" fill="#f4f6fb"/>
+    <circle cx="-3" cy="-2" r="1.100" fill="#20142c"/>
+    <circle cx="3" cy="-2" r="1.100" fill="#20142c"/>
+    <path d="M-1.500 1.200a1.500 1.500 0 0 0 3 0z" fill="#20142c"/>
+  </g>
+
+  <use href="#pumpkin" transform="translate(27 47)"/>
+  <use href="#pumpkin" transform="translate(252 49) scale(.9)"/>
+</svg>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "_macros.html" import input_field %}
+
+{% block title %}Logowanie · Biblioteka{% endblock %}
+
+{% block content %}
+<section class="edit-panel">
+  <p class="eyebrow">Konto</p>
+  <h1>Logowanie</h1>
+
+  {% if failed %}
+  <p class="alert" role="alert">Nieprawidłowy e-mail lub hasło.</p>
+  {% endif %}
+
+  <form class="form" method="post" action="/logowanie">
+    {{ input_field("email", "Adres e-mail", "email", email, {}, "email") }}
+    {{ input_field("password", "Hasło", "password", "", {}, "current-password") }}
+
+    <div class="form__actions field--wide">
+      <button class="button" type="submit">Zaloguj się</button>
+      <a class="button button--ghost" href="/rejestracja">Załóż konto</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

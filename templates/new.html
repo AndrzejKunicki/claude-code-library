@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from "_macros.html" import book_fields %}
+
+{% block title %}Nowa książka · Biblioteka{% endblock %}
+
+{% block content %}
+<a class="back-link" href="/">← Wszystkie książki</a>
+
+<section class="edit-panel">
+  <p class="eyebrow">Nowa książka</p>
+  <h1>Dodaj książkę</h1>
+
+  {% if errors %}
+  <p class="alert" role="alert">Popraw zaznaczone pola i spróbuj ponownie.</p>
+  {% endif %}
+
+  <form class="form" method="post" action="/books/new">
+    {{ book_fields(book, errors) }}
+
+    <div class="form__actions field--wide">
+      <button class="button" type="submit">Dodaj książkę</button>
+      <a class="button button--ghost" href="/">Anuluj</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

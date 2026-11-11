@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "_macros.html" import cover, stars %}
+
+{% block title %}{{ book.title }} · Biblioteka{% endblock %}
+
+{% block content %}
+<a class="back-link" href="/">← Wszystkie książki</a>
+
+{% if request.query_params.get("saved") %}
+<p class="notice" role="status">Zmiany zostały zapisane.</p>
+{% elif request.query_params.get("added") %}
+<p class="notice" role="status">Książka została dodana.</p>
+{% endif %}
+
+<article class="book-detail">
+  {{ cover(book, large=true) }}
+  <div class="book-detail__content">
+    <p class="meta">{{ book.genre }} · {{ book.year }}</p>
+    <h1>{{ book.title }}</h1>
+    <p class="book-detail__author">{{ book.author }}</p>
+    {{ stars(book.rating) }}
+
+    <div class="prose">
+      {% for paragraph in book.description.split("\n\n") %}
+      <p>{{ paragraph }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="book-detail__footer">
+      <a class="button button--halloween" href="/books/{{ book.id }}/edit">Edytuj informacje</a>
+      <span class="meta">Zaktualizowano {{ book.updated_at[:10] }}</span>
+    </div>
+  </div>
+</article>
+{% endblock %}

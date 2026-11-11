@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "_macros.html" import cover, stars %}
+
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Domowa półka</p>
+  <h1>Książki, do których warto wracać</h1>
+  <p class="hero__count">Na półce: {{ books | length }}</p>
+</section>
+
+{% if books %}
+<section class="book-grid" aria-label="Wszystkie książki">
+  {% for book in books %}
+  <article class="book-card">
+    <a class="book-card__link" href="/books/{{ book.id }}">
+      {{ cover(book) }}
+      <div class="book-card__body">
+        <p class="meta">{{ book.genre }} · {{ book.year }}</p>
+        <h2>{{ book.title }}</h2>
+        <p class="book-card__author">{{ book.author }}</p>
+        {{ stars(book.rating) }}
+      </div>
+    </a>
+  </article>
+  {% endfor %}
+</section>
+{% else %}
+<p class="empty">Na półce nie ma jeszcze żadnych książek.</p>
+{% endif %}
+{% endblock %}

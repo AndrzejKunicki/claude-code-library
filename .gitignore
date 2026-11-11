@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Lokalna baza danych (tworzona przy starcie, zawiera konta użytkowników)
+books.db
+
+# Lokalne ustawienia Claude Code i komenda z danymi testowego konta
+.claude/settings.local.json
+.claude/commands/it.md

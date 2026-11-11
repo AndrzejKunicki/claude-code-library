@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Błąd {{ status }} · Biblioteka{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Błąd {{ status }}</p>
+  <h1>{% if status == 404 %}Tej strony nie ma na półce{% else %}Coś poszło nie tak{% endif %}</h1>
+  <a class="button" href="/">Wróć do książek</a>
+</section>
+{% endblock %}

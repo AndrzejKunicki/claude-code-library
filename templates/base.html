@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Biblioteka{% endblock %}</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap&subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">Biblioteka<span aria-hidden="true">.</span></a>
+    <nav class="site-nav" aria-label="Główna nawigacja">
+      <a href="/"{% if request.url.path == "/" %} aria-current="page"{% endif %}>Książki</a>
+      <a href="/o-firmie"{% if request.url.path == "/o-firmie" %} aria-current="page"{% endif %}>O firmie</a>
+      {% if current_user %}
+      <a href="/books/new"{% if request.url.path == "/books/new" %} aria-current="page"{% endif %}>Dodaj książkę</a>
+      <a href="/kabinet"{% if request.url.path == "/kabinet" %} aria-current="page"{% endif %}>Kabinet</a>
+      {% else %}
+      <a href="/logowanie"{% if request.url.path == "/logowanie" %} aria-current="page"{% endif %}>Zaloguj się</a>
+      <a href="/rejestracja"{% if request.url.path == "/rejestracja" %} aria-current="page"{% endif %}>Rejestracja</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="page">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <span>Notatki z przeczytanych książek</span>
+    <nav class="footer-nav" aria-label="Linki w stopce">
+      <a href="/o-firmie">O firmie</a>
+      {% if current_user %}
+      <a href="/books/new">Dodaj książkę</a>
+      <a href="/kabinet">Kabinet</a>
+      {% else %}
+      <a href="/logowanie">Zaloguj się</a>
+      <a href="/rejestracja">Rejestracja</a>
+      {% endif %}
+    </nav>
+  </footer>
+</body>
+</html>
