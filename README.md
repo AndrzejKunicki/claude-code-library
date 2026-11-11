@@ -1,58 +1,58 @@
 # Biblioteka
 
-Prosty blog o książkach napisany w FastAPI. Strony są renderowane po stronie serwera (Jinja2), interfejs jest po polsku, a całość działa bez JavaScriptu.
+A simple book blog built with FastAPI. Pages are rendered on the server with Jinja2, the user interface is in Polish, and the whole site works without JavaScript.
 
-## Funkcje
+## Features
 
-- lista książek i strona szczegółów każdej książki,
-- dodawanie i edycja książek z walidacją formularza,
-- rejestracja, logowanie i wylogowanie (hasła hashowane scryptem, sesje w ciasteczku `httponly`),
-- panel konta (`/kabinet`) ze zmianą adresu e-mail,
-- okładki generowane z gradientów CSS, tryb ciemny przez `prefers-color-scheme`.
+- a book list and a details page for each book,
+- adding and editing books, with form validation,
+- registration, login and logout (passwords hashed with scrypt, sessions in an `httponly` cookie),
+- an account page (`/kabinet`) where users can change their email address,
+- book covers drawn with CSS gradients, and a dark mode through `prefers-color-scheme`.
 
-## Technologie
+## Tech stack
 
 - Python 3.13, [FastAPI](https://fastapi.tiangolo.com/), Uvicorn
-- Jinja2 (szablony w `templates/`)
-- SQLite przez standardowy moduł `sqlite3`, bez ORM
+- Jinja2 (templates in `templates/`)
+- SQLite through the standard `sqlite3` module, with no ORM
 
-## Uruchomienie
+## Getting started
 
-Windows, PowerShell, z katalogu projektu:
+On Windows, in PowerShell, from the project directory:
 
 ```powershell
-# Utworzenie środowiska wirtualnego
+# Create a virtual environment
 py -3.13 -m venv .venv
 
-# Instalacja zależności
+# Install dependencies
 .venv\Scripts\python.exe -m pip install -r requirements.txt
 
-# Serwer deweloperski na http://127.0.0.1:8000
+# Start the dev server at http://127.0.0.1:8000
 .venv\Scripts\python.exe -m uvicorn main:app --reload
 ```
 
-Na Linuksie i macOS zamiast `.venv\Scripts\python.exe` użyj `.venv/bin/python`.
+On Linux and macOS, use `.venv/bin/python` instead of `.venv\Scripts\python.exe`.
 
-Plik bazy `books.db` tworzy się automatycznie przy pierwszym starcie i jest wypełniany przykładowymi książkami.
+The `books.db` database file is created on first start and filled with sample books.
 
-## Struktura projektu
+## Project structure
 
 ```
-main.py           trasy, walidacja formularzy, konfiguracja Jinja2
-database.py       dostęp do danych (sqlite3), schemat i przykładowe dane
-templates/        szablony HTML (base.html, _macros.html i strony)
-css/style.css     jedyny arkusz stylów
-requirements.txt  zależności
+main.py           routes, form validation, Jinja2 setup
+database.py       data access (sqlite3), schema and sample data
+templates/        HTML templates (base.html, _macros.html and the pages)
+css/style.css     the only stylesheet
+requirements.txt  dependencies
 ```
 
-## Główne adresy
+## Main routes
 
-| Adres | Opis |
+| Route | Description |
 | --- | --- |
-| `/` | lista książek |
-| `/books/{id}` | szczegóły książki |
-| `/books/{id}/edit` | edycja książki |
-| `/books/new` | dodanie książki (wymaga logowania) |
-| `/rejestracja`, `/logowanie` | konto użytkownika |
-| `/kabinet` | panel konta |
-| `/o-firmie` | o nas |
+| `/` | book list |
+| `/books/{id}` | book details |
+| `/books/{id}/edit` | edit a book |
+| `/books/new` | add a book (login required) |
+| `/rejestracja`, `/logowanie` | register, log in |
+| `/kabinet` | account page |
+| `/o-firmie` | about page |
